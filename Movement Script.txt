@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+
+    public Rigidbody rb; 
+    public float speed = 1000f;
+    public float sideforce = 800f;
+    public float backforce = 800f;
+
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(0, 0, speed * Time.deltaTime);
+
+        if (Input.GetKey("d"))
+        {
+            rb.AddForce(sideforce * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey("a"))
+        {
+            rb.AddForce(-sideforce * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey("s"))
+        {
+            rb.AddForce(0, 0, -backforce * Time.deltaTime);
+        }
+
+    }
+}
