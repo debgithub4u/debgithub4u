@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DrivingScript : MonoBehaviour
+{
+    public WheelJoint2D wheelF, wheelB;
+    private JointMotor2D motorB, motorF;
+
+    public float SpeedF;
+    public float SpeedB;
+    public float Torque;
+   
+    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float x = Input.GetAxis("Horizontal");
+        if (x>0)
+        {
+            motorB.motorSpeed = SpeedF;
+            motorF.motorSpeed = SpeedF;
+
+            motorB.maxMotorTorque = Torque;
+            motorF.maxMotorTorque = Torque;
+
+            wheelF.motor = motorF;
+            wheelB.motor = motorB;
+
+        }
+        else if (x<0)
+        {
+            motorB.motorSpeed = SpeedB;
+            motorF.motorSpeed = SpeedB;
+
+            motorB.maxMotorTorque = Torque;
+            motorF.maxMotorTorque = Torque;
+
+            wheelF.motor = motorF;
+            wheelB.motor = motorB;
+        }
+        else
+        {
+            motorB.motorSpeed = 300;
+            motorF.motorSpeed = 300;
+
+            wheelF.motor = motorF;
+            wheelB.motor = motorB;
+
+
+        }
+    }
+}
